@@ -1,4 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Preview
+![2024-07-04 10 02 43 localhost 2e90e4d7c5fb](https://github.com/laura-lamprea/client-armi/assets/84552402/2d4afe9b-282c-4fcf-b76f-b7b609bb5f70)
+![2024-07-04 10 02 59 localhost 94f8a4255793](https://github.com/laura-lamprea/client-armi/assets/84552402/4c116739-66b5-47b2-b52c-f0e04ba9eff1)
+![2024-07-04 10 03 16 localhost c3abd87fc090](https://github.com/laura-lamprea/client-armi/assets/84552402/69a615a7-39f7-4c3c-9a70-6f8895201e4a)
+
 
 ## Getting Started
 

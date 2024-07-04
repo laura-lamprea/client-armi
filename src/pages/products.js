@@ -1,30 +1,29 @@
-import { useState, useEffect } from 'react';
-import { fetchProducts, addProductToCart } from '../services/api';
-import Layout from '../components/Layout';
+import { useState, useEffect } from "react";
+import { fetchProducts } from "../services/api";
+import Layout from "../components/Layout";
+import ProductCard from "../components/ProductCard";
+import ProductList from "../components/ProductList";
 
 export default function Products() {
-    const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        fetchProducts().then(setProducts);
-    }, []);
+	useEffect(() => {
+		fetchProducts().then(setProducts);
+	}, []);
 
-    const handleAddToCart = async (productId) => {
-        await addProductToCart(productId, 1);
-        alert('Product added to cart');
-    };
-
-    return (
-        <Layout>
-            <h1>Products</h1>
-            <ul>
-                {products.map(product => (
-                    <li key={product.id}>
-                        {product.name} - ${product.price}
-                        <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-                    </li>
-                ))}
-            </ul>
-        </Layout>
-    );
+	return (
+		<Layout>
+			<ProductList>
+				{products.map((product) => (
+					<ProductCard
+						key={product.id}
+						id={product.id}
+						name={product.name}
+						price={product.price}
+						description={product.description}
+					/>
+				))}
+			</ProductList>
+		</Layout>
+	);
 }

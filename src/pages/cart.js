@@ -6,6 +6,7 @@ import {
 	fetchProducts,
 } from "../services/api";
 import Layout from "../components/Layout";
+import CartItem from "../components/CartItem";
 
 export default function Cart() {
 	const [cart, setCart] = useState({});
@@ -28,34 +29,49 @@ export default function Cart() {
 		setCart(updatedCart);
 	};
 
-	const renderCartItems = () => {
-		return Object.keys(cart).map((productId) => {
-			const product = products.find((p) => p.id === parseInt(productId));
-			if (product) {
-				return (
-					<li key={productId}>
-						{product.name} - ${product.price}
-						<input
-							type="number"
-							value={cart[productId]}
-							onChange={(e) =>
-								handleUpdateQuantity(productId, parseInt(e.target.value))
-							}
-						/>
-						<button onClick={() => handleRemoveProduct(productId)}>
-							Remove
-						</button>
-					</li>
-				);
-			}
-			return null;
-		});
-	};
-
 	return (
 		<Layout>
-			<h1>Cart</h1>
-			<ul>{renderCartItems()}</ul>
+			<div className="relative overflow-x-auto shadow-md sm:rounded-lg max-w-4xl">
+				<table className="w-full text-sm text-left rtl:text-right text-gray-500">
+					<thead className="text-xs text-gray-700 uppercase bg-gray-50">
+						<tr>
+							<th scope="col" className="px-6 py-3">
+								Product
+							</th>
+							<th scope="col" className="px-6 py-3 text-center">
+								Qty
+							</th>
+							<th scope="col" className="px-6 py-3 text-center">
+								Price
+							</th>
+							<th scope="col" className="px-6 py-3 text-center">
+								Action
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{Object.keys(cart).map((productId) => {
+							const product = products.find(
+								(p) => p.id === parseInt(productId)
+							);
+							if (product) {
+								return (
+									<CartItem
+										key={product.id}
+										productId={product.id}
+										name={product.name}
+										price={product.price}
+										cart={cart}
+										handleUpdateQuantity={handleUpdateQuantity}
+										handleRemoveProduct={handleRemoveProduct}
+									/>
+								);
+							}
+							return null;
+						})}
+					</tbody>
+				</table>
+			</div>
 		</Layout>
 	);
 }
